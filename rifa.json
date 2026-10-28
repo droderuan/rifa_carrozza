@@ -93,7 +93,7 @@
     },
     "r_495v75qlga": {
       "id": "r_495v75qlga",
-      "status": "aberta",
+      "status": "cancelada",
       "nome": null,
       "telefone": null,
       "criadaEm": "2026-10-28T01:49:02.974Z",
@@ -487,8 +487,8 @@
       "reserva": null
     },
     "97": {
-      "status": "reservado",
-      "reserva": "r_495v75qlga"
+      "status": "livre",
+      "reserva": null
     },
     "98": {
       "status": "livre",
@@ -658,6 +658,15 @@
     {
       "em": "2026-10-28T01:49:02.974Z",
       "acao": "reservado",
+      "por": "comprador",
+      "reserva": "r_495v75qlga",
+      "numeros": [
+        "97"
+      ]
+    },
+    {
+      "em": "2026-10-28T01:49:05.968Z",
+      "acao": "cancelado",
       "por": "comprador",
       "reserva": "r_495v75qlga",
       "numeros": [
