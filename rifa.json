@@ -48,7 +48,7 @@
     },
     "r_er4l2d5pz3": {
       "id": "r_er4l2d5pz3",
-      "status": "aberta",
+      "status": "cancelada",
       "nome": null,
       "telefone": null,
       "criadaEm": "2026-10-28T01:44:53.286Z",
@@ -98,8 +98,8 @@
       "reserva": null
     },
     "11": {
-      "status": "reservado",
-      "reserva": "r_er4l2d5pz3"
+      "status": "livre",
+      "reserva": null
     },
     "12": {
       "status": "livre",
@@ -520,6 +520,15 @@
     {
       "em": "2026-10-28T01:44:53.286Z",
       "acao": "reservado",
+      "por": "comprador",
+      "reserva": "r_er4l2d5pz3",
+      "numeros": [
+        "11"
+      ]
+    },
+    {
+      "em": "2026-10-28T01:49:20.746Z",
+      "acao": "cancelado",
       "por": "comprador",
       "reserva": "r_er4l2d5pz3",
       "numeros": [
