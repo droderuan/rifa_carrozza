@@ -25,6 +25,12 @@ export function numerosDaReserva(estado: Estado, id: string): string[] {
     .sort((a, b) => Number(a) - Number(b));
 }
 
+export function reservaComNumeros(estado: Estado, id: string) {
+  const reserva = obterReserva(estado, id);
+  const numeros = numerosDaReserva(estado, id).map((numero) => ({ numero, status: estado.numeros[numero].status }));
+  return { reserva, numeros };
+}
+
 export function segundosRestantes(r: Reserva, agora: Date): number {
   if (r.status !== "aberta") return 0;
   return Math.max(0, Math.floor((new Date(r.expiraEm).getTime() - agora.getTime()) / 1000));
@@ -82,6 +88,8 @@ export function confirmarReserva(
   dados: { nome: unknown; telefone: unknown },
 ): void {
   const r = obterReserva(estado, id);
+  // Na escrita, aplicarExpiracoes já roda antes e marca a reserva como "expirada".
+  if (r.status === "expirada") throw new ErroDominio("RESERVA_EXPIRADA", 410, "O prazo da reserva acabou.");
   exigirAberta(r);
   if (agora.getTime() > new Date(r.expiraEm).getTime() + TOLERANCIA_MS) {
     throw new ErroDominio("RESERVA_EXPIRADA", 410, "O prazo da reserva acabou.");

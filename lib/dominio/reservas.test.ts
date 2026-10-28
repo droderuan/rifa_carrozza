@@ -4,6 +4,7 @@ import {
   confirmarReserva,
   gerarIdReserva,
   numerosDaReserva,
+  reservaComNumeros,
   reservar,
   segundosRestantes,
 } from "@/lib/dominio/reservas";
@@ -128,6 +129,16 @@ describe("confirmarReserva", () => {
     expect(err.status).toBe(410);
   });
 
+  it("retorna RESERVA_EXPIRADA mesmo depois de aplicarExpiracoes (fluxo de escrita)", () => {
+    const e = estadoNovo();
+    reservar(e, T0, ID, ["7"]);
+    const agora = depois(T0, 10 * MIN + 31_000);
+    aplicarExpiracoes(e, agora);
+    expect(erroDe(() => confirmarReserva(e, agora, ID, { nome: "Ana", telefone: "21999998888" })).codigo).toBe(
+      "RESERVA_EXPIRADA",
+    );
+  });
+
   it("rejeita reserva não aberta e inexistente", () => {
     const e = estadoNovo();
     reservar(e, T0, ID, ["7"]);
@@ -197,5 +208,19 @@ describe("gerarIdReserva", () => {
     expect(id).toMatch(/^r_[a-z0-9]{10}$/);
     reservar(e, T0, id, ["1"]);
     for (let i = 0; i < 50; i++) expect(gerarIdReserva(e.reservas)).not.toBe(id);
+  });
+});
+
+describe("reservaComNumeros", () => {
+  it("retorna a reserva e os números com status", () => {
+    const e = estadoNovo();
+    reservar(e, T0, ID, ["12", "7"]);
+    expect(reservaComNumeros(e, ID)).toEqual({
+      reserva: e.reservas[ID],
+      numeros: [
+        { numero: "7", status: "reservado" },
+        { numero: "12", status: "reservado" },
+      ],
+    });
   });
 });
