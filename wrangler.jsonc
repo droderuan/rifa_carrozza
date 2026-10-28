@@ -2,6 +2,8 @@
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"main": ".open-next/worker.js",
 	"name": "rifa-carrozza",
+	// Conta "rifa_carrozza" — fixa o destino do deploy, independente da conta do login
+	"account_id": "8633b5a14d174b3a1ef9f5bcff4048a0",
 	"compatibility_date": "2026-10-27",
 	"compatibility_flags": [
 		"nodejs_compat",
