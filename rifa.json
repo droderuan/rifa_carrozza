@@ -36,6 +36,15 @@
       "criadaEm": "2026-10-28T01:41:43.983Z",
       "expiraEm": "2026-10-28T01:51:43.983Z",
       "solicitadaEm": null
+    },
+    "r_iz6vpabf2l": {
+      "id": "r_iz6vpabf2l",
+      "status": "aberta",
+      "nome": null,
+      "telefone": null,
+      "criadaEm": "2026-10-28T01:43:34.306Z",
+      "expiraEm": "2026-10-28T01:53:34.306Z",
+      "solicitadaEm": null
     }
   },
   "numeros": {
@@ -164,8 +173,8 @@
       "reserva": null
     },
     "32": {
-      "status": "livre",
-      "reserva": null
+      "status": "reservado",
+      "reserva": "r_iz6vpabf2l"
     },
     "33": {
       "status": "livre",
@@ -489,6 +498,15 @@
       ],
       "nome": "RUAN FERREIRA",
       "telefone": "21993091661"
+    },
+    {
+      "em": "2026-10-28T01:43:34.306Z",
+      "acao": "reservado",
+      "por": "comprador",
+      "reserva": "r_iz6vpabf2l",
+      "numeros": [
+        "32"
+      ]
     }
   ]
 }
