@@ -59,6 +59,8 @@ npm run deploy
 
 `GITHUB_OWNER`, `GITHUB_REPO`, `GITHUB_BRANCH=dados-producao` e `GITHUB_DB_PATH` já estão em `vars` no `wrangler.jsonc`.
 
+> **Seu `.env.local` não vai para produção.** O build do OpenNext embute os arquivos `.env*` no worker; o `npm run deploy` roda `scripts/limpar-env-build.mjs` logo depois do build para esvaziar isso. Em produção valem só as `vars` do `wrangler.jsonc` e os segredos do `wrangler secret put`. Sempre publique com `npm run deploy` (não chame `opennextjs-cloudflare deploy` direto).
+
 Para testar o build do Worker localmente antes de publicar: `cp .dev.vars.example .dev.vars`, preencha e rode `npm run preview` (usa `dados-teste`).
 
 ## Cuidados
