@@ -30,12 +30,12 @@
     },
     "r_vcbxkwv2rb": {
       "id": "r_vcbxkwv2rb",
-      "status": "aberta",
-      "nome": null,
-      "telefone": null,
+      "status": "solicitada",
+      "nome": "ruan",
+      "telefone": "12313123123",
       "criadaEm": "2026-10-28T01:38:44.589Z",
       "expiraEm": "2026-10-28T01:48:44.589Z",
-      "solicitadaEm": null
+      "solicitadaEm": "2026-10-28T01:45:33.869Z"
     },
     "r_qcqdjmbyxm": {
       "id": "r_qcqdjmbyxm",
@@ -375,7 +375,7 @@
       "reserva": null
     },
     "78": {
-      "status": "reservado",
+      "status": "pendente",
       "reserva": "r_vcbxkwv2rb"
     },
     "79": {
@@ -562,6 +562,17 @@
       "numeros": [
         "99"
       ]
+    },
+    {
+      "em": "2026-10-28T01:45:33.869Z",
+      "acao": "solicitado",
+      "por": "comprador",
+      "reserva": "r_vcbxkwv2rb",
+      "numeros": [
+        "78"
+      ],
+      "nome": "ruan",
+      "telefone": "12313123123"
     }
   ]
 }
