@@ -1,0 +1,5 @@
+# Usado por `npm run preview` (wrangler). Copie para .dev.vars.
+NEXTJS_ENV=development
+GITHUB_TOKEN=
+ADMIN_PASSWORD=
+ADMIN_SESSION_SECRET=
