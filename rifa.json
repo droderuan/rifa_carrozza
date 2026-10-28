@@ -84,7 +84,7 @@
     },
     "r_vywb195ctq": {
       "id": "r_vywb195ctq",
-      "status": "aberta",
+      "status": "cancelada",
       "nome": null,
       "telefone": null,
       "criadaEm": "2026-10-28T01:48:58.469Z",
@@ -479,8 +479,8 @@
       "reserva": null
     },
     "95": {
-      "status": "reservado",
-      "reserva": "r_vywb195ctq"
+      "status": "livre",
+      "reserva": null
     },
     "96": {
       "status": "livre",
@@ -671,6 +671,15 @@
       "reserva": "r_495v75qlga",
       "numeros": [
         "97"
+      ]
+    },
+    {
+      "em": "2026-10-28T01:49:07.476Z",
+      "acao": "cancelado",
+      "por": "comprador",
+      "reserva": "r_vywb195ctq",
+      "numeros": [
+        "95"
       ]
     }
   ]
