@@ -1,0 +1,425 @@
+{
+  "versao": 1,
+  "config": {
+    "titulo": "Juntos pela Carrozza",
+    "subtitulo": "Rifa solidária para reconstruir a fábrica em Jaú",
+    "descricao": "Rifa solidária para a reconstrução da fábrica da Carrozza Custom Guitars.",
+    "historia": "[TEXTO DE EXEMPLO — editar no painel] Parte da fábrica da Carrozza, em Jaú, desabou. Toda a renda desta rifa vai para a reconstrução da oficina onde nascem as guitarras.",
+    "valorPorNumeroCentavos": 80000,
+    "primeiro": 1,
+    "ultimo": 100,
+    "minutosReserva": 10,
+    "maxPorReserva": null,
+    "instagramUrl": "https://www.instagram.com/p/De-Mr-gBsLA/",
+    "pix": {
+      "chave": "14996577711",
+      "titular": "Alexandre Carrozza",
+      "banco": "Banco do Brasil"
+    },
+    "instrucoesPagamento": "Depois do PIX, envie o comprovante no grupo do WhatsApp."
+  },
+  "reservas": {},
+  "numeros": {
+    "1": {
+      "status": "livre",
+      "reserva": null
+    },
+    "2": {
+      "status": "livre",
+      "reserva": null
+    },
+    "3": {
+      "status": "livre",
+      "reserva": null
+    },
+    "4": {
+      "status": "livre",
+      "reserva": null
+    },
+    "5": {
+      "status": "livre",
+      "reserva": null
+    },
+    "6": {
+      "status": "livre",
+      "reserva": null
+    },
+    "7": {
+      "status": "livre",
+      "reserva": null
+    },
+    "8": {
+      "status": "livre",
+      "reserva": null
+    },
+    "9": {
+      "status": "livre",
+      "reserva": null
+    },
+    "10": {
+      "status": "livre",
+      "reserva": null
+    },
+    "11": {
+      "status": "livre",
+      "reserva": null
+    },
+    "12": {
+      "status": "livre",
+      "reserva": null
+    },
+    "13": {
+      "status": "livre",
+      "reserva": null
+    },
+    "14": {
+      "status": "livre",
+      "reserva": null
+    },
+    "15": {
+      "status": "livre",
+      "reserva": null
+    },
+    "16": {
+      "status": "livre",
+      "reserva": null
+    },
+    "17": {
+      "status": "livre",
+      "reserva": null
+    },
+    "18": {
+      "status": "livre",
+      "reserva": null
+    },
+    "19": {
+      "status": "livre",
+      "reserva": null
+    },
+    "20": {
+      "status": "livre",
+      "reserva": null
+    },
+    "21": {
+      "status": "livre",
+      "reserva": null
+    },
+    "22": {
+      "status": "livre",
+      "reserva": null
+    },
+    "23": {
+      "status": "livre",
+      "reserva": null
+    },
+    "24": {
+      "status": "livre",
+      "reserva": null
+    },
+    "25": {
+      "status": "livre",
+      "reserva": null
+    },
+    "26": {
+      "status": "livre",
+      "reserva": null
+    },
+    "27": {
+      "status": "livre",
+      "reserva": null
+    },
+    "28": {
+      "status": "livre",
+      "reserva": null
+    },
+    "29": {
+      "status": "livre",
+      "reserva": null
+    },
+    "30": {
+      "status": "livre",
+      "reserva": null
+    },
+    "31": {
+      "status": "livre",
+      "reserva": null
+    },
+    "32": {
+      "status": "livre",
+      "reserva": null
+    },
+    "33": {
+      "status": "livre",
+      "reserva": null
+    },
+    "34": {
+      "status": "livre",
+      "reserva": null
+    },
+    "35": {
+      "status": "livre",
+      "reserva": null
+    },
+    "36": {
+      "status": "livre",
+      "reserva": null
+    },
+    "37": {
+      "status": "livre",
+      "reserva": null
+    },
+    "38": {
+      "status": "livre",
+      "reserva": null
+    },
+    "39": {
+      "status": "livre",
+      "reserva": null
+    },
+    "40": {
+      "status": "livre",
+      "reserva": null
+    },
+    "41": {
+      "status": "livre",
+      "reserva": null
+    },
+    "42": {
+      "status": "livre",
+      "reserva": null
+    },
+    "43": {
+      "status": "livre",
+      "reserva": null
+    },
+    "44": {
+      "status": "livre",
+      "reserva": null
+    },
+    "45": {
+      "status": "livre",
+      "reserva": null
+    },
+    "46": {
+      "status": "livre",
+      "reserva": null
+    },
+    "47": {
+      "status": "livre",
+      "reserva": null
+    },
+    "48": {
+      "status": "livre",
+      "reserva": null
+    },
+    "49": {
+      "status": "livre",
+      "reserva": null
+    },
+    "50": {
+      "status": "livre",
+      "reserva": null
+    },
+    "51": {
+      "status": "livre",
+      "reserva": null
+    },
+    "52": {
+      "status": "livre",
+      "reserva": null
+    },
+    "53": {
+      "status": "livre",
+      "reserva": null
+    },
+    "54": {
+      "status": "livre",
+      "reserva": null
+    },
+    "55": {
+      "status": "livre",
+      "reserva": null
+    },
+    "56": {
+      "status": "livre",
+      "reserva": null
+    },
+    "57": {
+      "status": "livre",
+      "reserva": null
+    },
+    "58": {
+      "status": "livre",
+      "reserva": null
+    },
+    "59": {
+      "status": "livre",
+      "reserva": null
+    },
+    "60": {
+      "status": "livre",
+      "reserva": null
+    },
+    "61": {
+      "status": "livre",
+      "reserva": null
+    },
+    "62": {
+      "status": "livre",
+      "reserva": null
+    },
+    "63": {
+      "status": "livre",
+      "reserva": null
+    },
+    "64": {
+      "status": "livre",
+      "reserva": null
+    },
+    "65": {
+      "status": "livre",
+      "reserva": null
+    },
+    "66": {
+      "status": "livre",
+      "reserva": null
+    },
+    "67": {
+      "status": "livre",
+      "reserva": null
+    },
+    "68": {
+      "status": "livre",
+      "reserva": null
+    },
+    "69": {
+      "status": "livre",
+      "reserva": null
+    },
+    "70": {
+      "status": "livre",
+      "reserva": null
+    },
+    "71": {
+      "status": "livre",
+      "reserva": null
+    },
+    "72": {
+      "status": "livre",
+      "reserva": null
+    },
+    "73": {
+      "status": "livre",
+      "reserva": null
+    },
+    "74": {
+      "status": "livre",
+      "reserva": null
+    },
+    "75": {
+      "status": "livre",
+      "reserva": null
+    },
+    "76": {
+      "status": "livre",
+      "reserva": null
+    },
+    "77": {
+      "status": "livre",
+      "reserva": null
+    },
+    "78": {
+      "status": "livre",
+      "reserva": null
+    },
+    "79": {
+      "status": "livre",
+      "reserva": null
+    },
+    "80": {
+      "status": "livre",
+      "reserva": null
+    },
+    "81": {
+      "status": "livre",
+      "reserva": null
+    },
+    "82": {
+      "status": "livre",
+      "reserva": null
+    },
+    "83": {
+      "status": "livre",
+      "reserva": null
+    },
+    "84": {
+      "status": "livre",
+      "reserva": null
+    },
+    "85": {
+      "status": "livre",
+      "reserva": null
+    },
+    "86": {
+      "status": "livre",
+      "reserva": null
+    },
+    "87": {
+      "status": "livre",
+      "reserva": null
+    },
+    "88": {
+      "status": "livre",
+      "reserva": null
+    },
+    "89": {
+      "status": "livre",
+      "reserva": null
+    },
+    "90": {
+      "status": "livre",
+      "reserva": null
+    },
+    "91": {
+      "status": "livre",
+      "reserva": null
+    },
+    "92": {
+      "status": "livre",
+      "reserva": null
+    },
+    "93": {
+      "status": "livre",
+      "reserva": null
+    },
+    "94": {
+      "status": "livre",
+      "reserva": null
+    },
+    "95": {
+      "status": "livre",
+      "reserva": null
+    },
+    "96": {
+      "status": "livre",
+      "reserva": null
+    },
+    "97": {
+      "status": "livre",
+      "reserva": null
+    },
+    "98": {
+      "status": "livre",
+      "reserva": null
+    },
+    "99": {
+      "status": "livre",
+      "reserva": null
+    },
+    "100": {
+      "status": "livre",
+      "reserva": null
+    }
+  },
+  "eventos": []
+}
