@@ -57,7 +57,7 @@
     },
     "r_rby5m90nzm": {
       "id": "r_rby5m90nzm",
-      "status": "aberta",
+      "status": "cancelada",
       "nome": null,
       "telefone": null,
       "criadaEm": "2026-10-28T01:41:48.342Z",
@@ -459,8 +459,8 @@
       "reserva": null
     },
     "99": {
-      "status": "reservado",
-      "reserva": "r_rby5m90nzm"
+      "status": "livre",
+      "reserva": null
     },
     "100": {
       "status": "pendente",
@@ -548,6 +548,15 @@
     {
       "em": "2026-10-28T01:41:48.342Z",
       "acao": "reservado",
+      "por": "comprador",
+      "reserva": "r_rby5m90nzm",
+      "numeros": [
+        "99"
+      ]
+    },
+    {
+      "em": "2026-10-28T01:41:50.975Z",
+      "acao": "cancelado",
       "por": "comprador",
       "reserva": "r_rby5m90nzm",
       "numeros": [
