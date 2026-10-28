@@ -7,8 +7,8 @@ import { cn } from "@/lib/utils";
 const CLASSES: Record<StatusNumero | "selecionado", string> = {
   livre: "bg-livre border-livre-borda text-livre-texto",
   selecionado: "bg-selecionado border-selecionado text-selecionado-texto ring-2 ring-selecionado/30",
-  reservado: "bg-reservado border-reservado text-reservado-texto",
-  pendente: "bg-pendente border-pendente text-pendente-texto",
+  reservado: "bg-reservado border-reservado-borda text-reservado-texto",
+  pendente: "bg-pendente border-pendente-borda text-pendente-texto",
   confirmado: "bg-confirmado border-confirmado text-confirmado-texto line-through",
 };
 

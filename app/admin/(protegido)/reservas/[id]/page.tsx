@@ -89,7 +89,7 @@ export default async function DetalheReserva({ params }: PageProps<"/admin/reser
                         className={cn(
                           n.status === "pendente" && "bg-pendente text-pendente-texto",
                           n.status === "confirmado" && "bg-primary text-primary-foreground",
-                          n.status === "reservado" && "bg-reservado text-livre-texto",
+                          n.status === "reservado" && "bg-reservado text-reservado-texto",
                         )}
                       >
                         {ROTULO_NUMERO[n.status]}

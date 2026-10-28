@@ -15,10 +15,12 @@
   --color-livre-texto: #e4e4e7;
   --color-selecionado: #f5b301;
   --color-selecionado-texto: #111111;
-  --color-reservado: #3f3f46;
-  --color-reservado-texto: #71717a;
-  --color-pendente: #52410f;
-  --color-pendente-texto: #c9a227;
+  --color-reservado: #172a45;
+  --color-reservado-borda: #24426b;
+  --color-reservado-texto: #93c5fd;
+  --color-pendente: #3f1a1f;
+  --color-pendente-borda: #6b2a33;
+  --color-pendente-texto: #fca5a5;
   --color-confirmado: #18181b;
   --color-confirmado-texto: #3f3f46;
   --color-sidebar-ring: var(--sidebar-ring);
