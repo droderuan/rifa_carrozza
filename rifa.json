@@ -91,8 +91,8 @@
       "reserva": "r_ymtn8bdsed"
     },
     "16": {
-      "status": "livre",
-      "reserva": null
+      "status": "reservado",
+      "reserva": "r_ymtn8bdsed"
     },
     "17": {
       "status": "livre",
@@ -439,6 +439,15 @@
       "reserva": "r_ymtn8bdsed",
       "numeros": [
         "15"
+      ]
+    },
+    {
+      "em": "2026-10-28T01:37:52.222Z",
+      "acao": "reservado",
+      "por": "comprador",
+      "reserva": "r_ymtn8bdsed",
+      "numeros": [
+        "16"
       ]
     }
   ]
