@@ -90,6 +90,15 @@
       "criadaEm": "2026-10-28T01:48:58.469Z",
       "expiraEm": "2026-10-28T01:58:58.469Z",
       "solicitadaEm": null
+    },
+    "r_495v75qlga": {
+      "id": "r_495v75qlga",
+      "status": "aberta",
+      "nome": null,
+      "telefone": null,
+      "criadaEm": "2026-10-28T01:49:02.974Z",
+      "expiraEm": "2026-10-28T01:59:02.974Z",
+      "solicitadaEm": null
     }
   },
   "numeros": {
@@ -478,8 +487,8 @@
       "reserva": null
     },
     "97": {
-      "status": "livre",
-      "reserva": null
+      "status": "reservado",
+      "reserva": "r_495v75qlga"
     },
     "98": {
       "status": "livre",
@@ -644,6 +653,15 @@
       "reserva": "r_vywb195ctq",
       "numeros": [
         "95"
+      ]
+    },
+    {
+      "em": "2026-10-28T01:49:02.974Z",
+      "acao": "reservado",
+      "por": "comprador",
+      "reserva": "r_495v75qlga",
+      "numeros": [
+        "97"
       ]
     }
   ]
