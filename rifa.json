@@ -48,12 +48,12 @@
     },
     "r_xeq65befcv": {
       "id": "r_xeq65befcv",
-      "status": "aberta",
-      "nome": null,
-      "telefone": null,
+      "status": "solicitada",
+      "nome": "Teste automatizado",
+      "telefone": "14999998888",
       "criadaEm": "2026-10-28T01:41:11.604Z",
       "expiraEm": "2026-10-28T01:51:11.604Z",
-      "solicitadaEm": null
+      "solicitadaEm": "2026-10-28T01:41:13.884Z"
     }
   },
   "numeros": {
@@ -454,7 +454,7 @@
       "reserva": null
     },
     "100": {
-      "status": "reservado",
+      "status": "pendente",
       "reserva": "r_xeq65befcv"
     }
   },
@@ -524,6 +524,17 @@
       "numeros": [
         "100"
       ]
+    },
+    {
+      "em": "2026-10-28T01:41:13.884Z",
+      "acao": "solicitado",
+      "por": "comprador",
+      "reserva": "r_xeq65befcv",
+      "numeros": [
+        "100"
+      ],
+      "nome": "Teste automatizado",
+      "telefone": "14999998888"
     }
   ]
 }
