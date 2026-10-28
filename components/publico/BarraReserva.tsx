@@ -40,7 +40,7 @@ export function BarraReserva({ quantidade, valorPorNumeroCentavos, prazo, onFina
           </p>
         </div>
         <Button onClick={onFinalizar} className="h-11 shrink-0 px-5 text-base font-bold">
-          Confirmar
+          Continuar
         </Button>
       </div>
     </div>

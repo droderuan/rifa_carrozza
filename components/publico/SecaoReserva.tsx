@@ -232,6 +232,9 @@ export function SecaoReserva({ config: configInicial, numerosIniciais }: Props) 
           <div ref={formRef} className="mt-6 scroll-mt-4 space-y-4 rounded-xl border border-primary/40 bg-card p-4">
             <TimerReserva numeros={ordenar(reserva.numeros)} prazo={reserva.prazo} onExpirar={onExpirar} />
             <FormConfirmacao
+              numeros={ordenar(reserva.numeros)}
+              totalCentavos={reserva.numeros.length * config.valorPorNumeroCentavos}
+              pix={config.pix}
               enviando={ocupado === "confirmar"}
               cancelando={ocupado === "cancelar"}
               onConfirmar={confirmar}
