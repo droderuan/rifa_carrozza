@@ -54,6 +54,15 @@
       "criadaEm": "2026-10-28T01:41:11.604Z",
       "expiraEm": "2026-10-28T01:51:11.604Z",
       "solicitadaEm": "2026-10-28T01:41:13.884Z"
+    },
+    "r_rby5m90nzm": {
+      "id": "r_rby5m90nzm",
+      "status": "aberta",
+      "nome": null,
+      "telefone": null,
+      "criadaEm": "2026-10-28T01:41:48.342Z",
+      "expiraEm": "2026-10-28T01:51:48.342Z",
+      "solicitadaEm": null
     }
   },
   "numeros": {
@@ -450,8 +459,8 @@
       "reserva": null
     },
     "99": {
-      "status": "livre",
-      "reserva": null
+      "status": "reservado",
+      "reserva": "r_rby5m90nzm"
     },
     "100": {
       "status": "pendente",
@@ -535,6 +544,15 @@
       ],
       "nome": "Teste automatizado",
       "telefone": "14999998888"
+    },
+    {
+      "em": "2026-10-28T01:41:48.342Z",
+      "acao": "reservado",
+      "por": "comprador",
+      "reserva": "r_rby5m90nzm",
+      "numeros": [
+        "99"
+      ]
     }
   ]
 }
