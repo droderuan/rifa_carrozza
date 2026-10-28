@@ -30,7 +30,7 @@
     },
     "r_mqllu4urr7": {
       "id": "r_mqllu4urr7",
-      "status": "aberta",
+      "status": "cancelada",
       "nome": null,
       "telefone": null,
       "criadaEm": "2026-10-28T01:41:43.983Z",
@@ -436,8 +436,8 @@
       "reserva": null
     },
     "100": {
-      "status": "reservado",
-      "reserva": "r_mqllu4urr7"
+      "status": "livre",
+      "reserva": null
     }
   },
   "eventos": [
@@ -469,6 +469,15 @@
       ],
       "nome": "RUAN FERREIRA",
       "telefone": "21993091661"
+    },
+    {
+      "em": "2026-10-28T01:42:13.838Z",
+      "acao": "cancelado",
+      "por": "comprador",
+      "reserva": "r_mqllu4urr7",
+      "numeros": [
+        "100"
+      ]
     }
   ]
 }
