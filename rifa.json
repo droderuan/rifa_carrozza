@@ -120,7 +120,7 @@
       "reserva": null
     },
     "21": {
-      "status": "pendente",
+      "status": "confirmado",
       "reserva": "r_26zcwxa4cq"
     },
     "22": {
@@ -478,6 +478,17 @@
       "numeros": [
         "100"
       ]
+    },
+    {
+      "em": "2026-10-28T01:43:25.653Z",
+      "acao": "confirmado",
+      "por": "admin",
+      "reserva": "r_26zcwxa4cq",
+      "numeros": [
+        "21"
+      ],
+      "nome": "RUAN FERREIRA",
+      "telefone": "21993091661"
     }
   ]
 }
