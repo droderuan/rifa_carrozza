@@ -18,7 +18,17 @@
     },
     "instrucoesPagamento": "Depois do PIX, envie o comprovante no grupo do WhatsApp."
   },
-  "reservas": {},
+  "reservas": {
+    "r_ymtn8bdsed": {
+      "id": "r_ymtn8bdsed",
+      "status": "aberta",
+      "nome": null,
+      "telefone": null,
+      "criadaEm": "2026-10-28T01:37:49.606Z",
+      "expiraEm": "2026-10-28T01:47:49.606Z",
+      "solicitadaEm": null
+    }
+  },
   "numeros": {
     "1": {
       "status": "livre",
@@ -77,8 +87,8 @@
       "reserva": null
     },
     "15": {
-      "status": "livre",
-      "reserva": null
+      "status": "reservado",
+      "reserva": "r_ymtn8bdsed"
     },
     "16": {
       "status": "livre",
@@ -421,5 +431,15 @@
       "reserva": null
     }
   },
-  "eventos": []
+  "eventos": [
+    {
+      "em": "2026-10-28T01:37:49.606Z",
+      "acao": "reservado",
+      "por": "comprador",
+      "reserva": "r_ymtn8bdsed",
+      "numeros": [
+        "15"
+      ]
+    }
+  ]
 }
