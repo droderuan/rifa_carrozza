@@ -45,7 +45,7 @@ describe("confirmarNumeros", () => {
       reserva: A,
       numeros: ["7"],
       nome: "Ana Lima",
-      telefone: "21999998888",
+      telefone: "+5521999998888",
     });
   });
 

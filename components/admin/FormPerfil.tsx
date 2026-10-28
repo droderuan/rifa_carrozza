@@ -5,13 +5,14 @@ import { useAcaoAdmin } from "@/components/admin/useAcaoAdmin";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { formatarTelefone, mascaraTelefone } from "@/lib/formatar";
+import { CampoTelefone } from "@/components/CampoTelefone";
+import { montarTelefone, separarTelefone } from "@/lib/telefone";
 
 type Props = { id: string; nome: string; telefone: string; onSalvo?: () => void };
 
 export function FormPerfil({ id, nome: nomeInicial, telefone: telInicial, onSalvo }: Props) {
   const [nome, setNome] = useState(nomeInicial);
-  const [telefone, setTelefone] = useState(formatarTelefone(telInicial));
+  const [tel, setTel] = useState(() => separarTelefone(telInicial));
   const { executar, executando } = useAcaoAdmin();
 
   async function salvar(e: FormEvent) {
@@ -19,7 +20,7 @@ export function FormPerfil({ id, nome: nomeInicial, telefone: telInicial, onSalv
     const ok = await executar(
       "perfil",
       `/api/admin/reservas/${encodeURIComponent(id)}`,
-      { method: "PATCH", body: JSON.stringify({ nome, telefone }) },
+      { method: "PATCH", body: JSON.stringify({ nome, telefone: montarTelefone(tel.pais, tel.numero) }) },
       "Perfil salvo",
     );
     if (ok) onSalvo?.();
@@ -33,14 +34,7 @@ export function FormPerfil({ id, nome: nomeInicial, telefone: telInicial, onSalv
       </div>
       <div className="space-y-1.5">
         <Label htmlFor={`tel-${id}`}>Telefone</Label>
-        <Input
-          id={`tel-${id}`}
-          type="tel"
-          inputMode="numeric"
-          value={telefone}
-          onChange={(e) => setTelefone(mascaraTelefone(e.target.value))}
-          required
-        />
+        <CampoTelefone id={`tel-${id}`} valor={tel} onChange={setTel} />
       </div>
       <Button type="submit" disabled={executando !== null}>
         {executando && <Loader2Icon className="animate-spin" />}

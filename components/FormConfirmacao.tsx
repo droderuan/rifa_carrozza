@@ -13,7 +13,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import type { DadosPix } from "@/lib/dominio/tipos";
-import { formatarMoeda, mascaraTelefone } from "@/lib/formatar";
+import { CampoTelefone, type ValorTelefone } from "@/components/CampoTelefone";
+import { formatarMoeda, formatarTelefone } from "@/lib/formatar";
+import { montarTelefone, telefoneValido } from "@/lib/telefone";
 
 type Props = {
   numeros: string[];
@@ -27,7 +29,8 @@ type Props = {
 
 export function FormConfirmacao({ numeros, totalCentavos, pix, enviando, cancelando, onConfirmar, onCancelar }: Props) {
   const [nome, setNome] = useState("");
-  const [telefone, setTelefone] = useState("");
+  const [tel, setTel] = useState<ValorTelefone>({ pais: "BR", numero: "" });
+  const telefone = montarTelefone(tel.pais, tel.numero);
   const [erroTelefone, setErroTelefone] = useState<string | null>(null);
   const [revisando, setRevisando] = useState(false);
   const ocupado = enviando || cancelando;
@@ -35,9 +38,13 @@ export function FormConfirmacao({ numeros, totalCentavos, pix, enviando, cancela
   // Valida o básico e abre o modal; a reserva só é confirmada no modal.
   function reservar(e: FormEvent) {
     e.preventDefault();
-    const digitos = telefone.replace(/\D/g, "");
-    if (digitos.length < 10) {
-      setErroTelefone("Informe o telefone com DDD, ex.: (14) 99999-8888.");
+    const digitos = tel.numero.replace(/\D/g, "");
+    if (tel.pais === "BR" ? digitos.length < 10 : !telefoneValido(telefone)) {
+      setErroTelefone(
+        tel.pais === "BR"
+          ? "Informe o telefone com DDD, ex.: (14) 99999-8888."
+          : "Número inválido para o país escolhido. Informe o número completo, com código de área.",
+      );
       return;
     }
     setErroTelefone(null);
@@ -75,21 +82,16 @@ export function FormConfirmacao({ numeros, totalCentavos, pix, enviando, cancela
         </div>
         <div className="space-y-1.5">
           <Label htmlFor="telefone">Telefone do WhatsApp (o mesmo do grupo)</Label>
-          <Input
+          <CampoTelefone
             id="telefone"
-            type="tel"
-            inputMode="numeric"
-            autoComplete="tel-national"
-            required
-            value={telefone}
-            onChange={(e) => {
-              setTelefone(mascaraTelefone(e.target.value));
+            valor={tel}
+            onChange={(v) => {
+              setTel(v);
               setErroTelefone(null);
             }}
-            placeholder="(00) 00000-0000"
-            aria-invalid={!!erroTelefone}
-            className="h-11"
+            invalido={!!erroTelefone}
           />
+          <p className="text-xs text-muted-foreground">Número de fora do Brasil? Toque na bandeira para trocar o país.</p>
           {erroTelefone && <p className="text-xs text-destructive">{erroTelefone}</p>}
         </div>
         <div className="flex flex-col gap-2 sm:flex-row-reverse">
@@ -112,7 +114,7 @@ export function FormConfirmacao({ numeros, totalCentavos, pix, enviando, cancela
                 <p>
                   {numeros.length === 1 ? "Número" : "Números"}{" "}
                   <strong className="text-foreground">{numeros.join(", ")}</strong> para{" "}
-                  <strong className="text-foreground">{nome.trim()}</strong> · {telefone}
+                  <strong className="text-foreground">{nome.trim()}</strong> · {formatarTelefone(telefone)}
                 </p>
                 <p className="rounded-lg border border-primary/30 bg-primary/10 p-3 text-foreground">
                   Depois de confirmar, faça o <strong>PIX de {formatarMoeda(totalCentavos)}</strong>

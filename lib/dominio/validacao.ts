@@ -1,3 +1,4 @@
+import { parsePhoneNumberFromString } from "libphonenumber-js";
 import { ErroDominio } from "@/lib/erros";
 
 function invalido(mensagem: string): never {
@@ -11,13 +12,26 @@ export function normalizarNome(v: unknown): string {
   return nome;
 }
 
-export function normalizarTelefone(v: unknown): string {
-  if (typeof v !== "string") invalido("Informe o telefone.");
-  let d = v.replace(/\D/g, "");
-  if (d.startsWith("55") && (d.length === 12 || d.length === 13)) d = d.slice(2);
-  const ddd = Number(d.slice(0, 2));
-  if ((d.length !== 10 && d.length !== 11) || ddd < 11 || ddd > 99) {
+function telefoneBrasil(nacional: string): string {
+  const ddd = Number(nacional.slice(0, 2));
+  if ((nacional.length !== 10 && nacional.length !== 11) || ddd < 11 || ddd > 99) {
     invalido("Telefone inválido. Use DDD + número, ex.: (21) 99999-8888.");
   }
-  return d;
+  return `+55${nacional}`;
+}
+
+/**
+ * Normaliza para o formato internacional (+DDI e dígitos), ex.: "+5521999998888".
+ * Com "+" vale o país do DDI; sem "+" é Brasil (com ou sem o 55 na frente).
+ */
+export function normalizarTelefone(v: unknown): string {
+  if (typeof v !== "string") invalido("Informe o telefone.");
+  const d = v.replace(/\D/g, "");
+  if (v.trim().startsWith("+")) {
+    if (d.startsWith("55")) return telefoneBrasil(d.slice(2));
+    const p = parsePhoneNumberFromString(`+${d}`);
+    if (!p?.isValid()) invalido("Telefone inválido para o país escolhido.");
+    return p.number;
+  }
+  return telefoneBrasil(d.startsWith("55") && (d.length === 12 || d.length === 13) ? d.slice(2) : d);
 }

@@ -29,6 +29,12 @@ describe("formatarTelefone", () => {
     expect(formatarTelefone("21999998888")).toBe("(21) 99999-8888");
     expect(formatarTelefone("1436221234")).toBe("(14) 3622-1234");
   });
+
+  it("formata o formato internacional: Brasil como nacional, outros com +código", () => {
+    expect(formatarTelefone("+5521999998888")).toBe("(21) 99999-8888");
+    expect(formatarTelefone("+351912345678")).toBe("+351 912 345 678");
+    expect(formatarTelefone("+16502530000")).toBe("+1 650 253 0000");
+  });
 });
 
 describe("mascaraTelefone", () => {
@@ -41,6 +47,8 @@ describe("mascaraTelefone", () => {
 describe("linkWhatsApp", () => {
   it("monta o link com 55", () => {
     expect(linkWhatsApp("21999998888")).toBe("https://wa.me/5521999998888");
+    expect(linkWhatsApp("+5521999998888")).toBe("https://wa.me/5521999998888");
+    expect(linkWhatsApp("+351912345678")).toBe("https://wa.me/351912345678");
   });
 });
 

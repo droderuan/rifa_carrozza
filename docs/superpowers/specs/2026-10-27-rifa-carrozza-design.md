@@ -176,3 +176,12 @@ Substitui o §4.2 ("rifa.json no `main`").
 - `GITHUB_BRANCH` passa a ser **obrigatório** (sem padrão `main`): se faltar, leitura e escrita falham com erro, em vez de gravar no branch do código.
 - `npm run seed` cria o branch órfão pela Git Data API (tree → commit sem pais → ref) quando ele não existe; se o branch existir sem o arquivo, cria o arquivo; se o arquivo existir, não faz nada.
 - Consequência: o app nunca commita no `main`, então não há mais a regra de `git pull` antes de push do código.
+
+## 12. Mudança: telefone de outros países (pedido do usuário, 2026-10-27)
+
+Substitui a regra de telefone do spec §5.3 e o formato de `Reserva.telefone` do §4.1.
+
+- O formulário tem um **seletor de país com busca** (Popover + Command do shadcn), padrão **Brasil**; Brasil, Portugal e EUA no topo; nomes em português (`Intl.DisplayNames`). Validação e formatação por país com `libphonenumber-js`; para o Brasil continuam a máscara `(00) 00000-0000` e a regra de DDD 11–99.
+- **Formato gravado:** internacional, `+` DDI e dígitos (ex.: `+5521999998888`, `+351912345678`). Valores antigos sem `+` são lidos como Brasil (`formatarTelefone`, `linkWhatsApp`, `separarTelefone`).
+- Exibição: Brasil no formato nacional `(21) 99999-8888`; outros países com `+DDI` (ex.: `+351 912 345 678`). Link do WhatsApp: `https://wa.me/<dígitos com DDI>`.
+- A edição de perfil no painel usa o mesmo campo.

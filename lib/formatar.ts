@@ -1,3 +1,5 @@
+import { parsePhoneNumberFromString } from "libphonenumber-js";
+
 const FUSO = "America/Sao_Paulo";
 
 export function formatarNumero(n: string): string {
@@ -10,8 +12,12 @@ export function formatarMoeda(centavos: number): string {
   return moeda.format(centavos / 100).replace(/\s/g, " ");
 }
 
-export function formatarTelefone(digitos: string): string {
-  return mascaraTelefone(digitos);
+/** Telefone gravado → texto. Brasil no formato nacional; outros países com +DDI. Sem "+" é o formato antigo (Brasil). */
+export function formatarTelefone(telefone: string): string {
+  if (!telefone.startsWith("+")) return mascaraTelefone(telefone);
+  const p = parsePhoneNumberFromString(telefone);
+  if (!p) return telefone;
+  return p.country === "BR" ? mascaraTelefone(p.nationalNumber) : p.formatInternational();
 }
 
 /** Máscara (00) 0000-0000 / (00) 00000-0000, aplicada enquanto a pessoa digita. */
@@ -26,8 +32,9 @@ export function mascaraTelefone(entrada: string): string {
   return `(${ddd}) ${resto.slice(0, corte)}-${resto.slice(corte)}`;
 }
 
-export function linkWhatsApp(digitos: string): string {
-  return `https://wa.me/55${digitos}`;
+export function linkWhatsApp(telefone: string): string {
+  const digitos = telefone.replace(/\D/g, "");
+  return `https://wa.me/${telefone.startsWith("+") ? digitos : `55${digitos}`}`;
 }
 
 const dataHora = new Intl.DateTimeFormat("pt-BR", {

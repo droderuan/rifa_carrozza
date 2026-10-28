@@ -103,7 +103,7 @@ describe("confirmarReserva", () => {
     const r = e.reservas[ID];
     expect(r.status).toBe("solicitada");
     expect(r.nome).toBe("Maria Souza");
-    expect(r.telefone).toBe("21999998888");
+    expect(r.telefone).toBe("+5521999998888");
     expect(r.solicitadaEm).toBe(agora.toISOString());
     expect(e.eventos.at(-1)).toEqual({
       em: agora.toISOString(),
@@ -112,7 +112,7 @@ describe("confirmarReserva", () => {
       reserva: ID,
       numeros: ["7", "12"],
       nome: "Maria Souza",
-      telefone: "21999998888",
+      telefone: "+5521999998888",
     });
   });
 

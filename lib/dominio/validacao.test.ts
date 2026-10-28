@@ -28,16 +28,25 @@ describe("normalizarNome", () => {
 });
 
 describe("normalizarTelefone", () => {
-  it("guarda só dígitos, sem 55", () => {
-    expect(normalizarTelefone("(21) 99999-8888")).toBe("21999998888");
-    expect(normalizarTelefone("+55 21 99999-8888")).toBe("21999998888");
-    expect(normalizarTelefone("5521999998888")).toBe("21999998888");
-    expect(normalizarTelefone("551436221234")).toBe("1436221234");
+  it("grava no formato internacional; sem + é Brasil", () => {
+    expect(normalizarTelefone("(21) 99999-8888")).toBe("+5521999998888");
+    expect(normalizarTelefone("+55 21 99999-8888")).toBe("+5521999998888");
+    expect(normalizarTelefone("5521999998888")).toBe("+5521999998888");
+    expect(normalizarTelefone("551436221234")).toBe("+551436221234");
   });
 
-  it("rejeita DDD inválido, tamanho errado e não-string", () => {
+  it("aceita números de outros países com +código", () => {
+    expect(normalizarTelefone("+351 912 345 678")).toBe("+351912345678");
+    expect(normalizarTelefone("+1 (650) 253-0000")).toBe("+16502530000");
+    expect(normalizarTelefone("+54 9 11 2345-6789")).toBe("+5491123456789");
+  });
+
+  it("rejeita DDD brasileiro inválido, tamanho errado, país inválido e não-string", () => {
     expect(codigoDe(() => normalizarTelefone("10999998888"))).toBe("DADOS_INVALIDOS");
+    expect(codigoDe(() => normalizarTelefone("+55 10 99999-8888"))).toBe("DADOS_INVALIDOS");
     expect(codigoDe(() => normalizarTelefone("999998888"))).toBe("DADOS_INVALIDOS");
+    expect(codigoDe(() => normalizarTelefone("+351 12"))).toBe("DADOS_INVALIDOS");
+    expect(codigoDe(() => normalizarTelefone("+999 123456789"))).toBe("DADOS_INVALIDOS");
     expect(codigoDe(() => normalizarTelefone(123))).toBe("DADOS_INVALIDOS");
   });
 });
