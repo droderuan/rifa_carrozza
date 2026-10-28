@@ -168,11 +168,11 @@
       "reserva": null
     },
     "15": {
-      "status": "pendente",
+      "status": "confirmado",
       "reserva": "r_ymtn8bdsed"
     },
     "16": {
-      "status": "pendente",
+      "status": "confirmado",
       "reserva": "r_ymtn8bdsed"
     },
     "17": {
@@ -710,6 +710,18 @@
       ],
       "nome": "ruan ferreira",
       "telefone": "12312312312"
+    },
+    {
+      "em": "2026-10-28T01:52:23.676Z",
+      "acao": "confirmado",
+      "por": "admin",
+      "reserva": "r_ymtn8bdsed",
+      "numeros": [
+        "15",
+        "16"
+      ],
+      "nome": "asdasd",
+      "telefone": "12312313123"
     }
   ]
 }
