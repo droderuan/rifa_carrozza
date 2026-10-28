@@ -21,12 +21,12 @@
   "reservas": {
     "r_26zcwxa4cq": {
       "id": "r_26zcwxa4cq",
-      "status": "aberta",
-      "nome": null,
-      "telefone": null,
+      "status": "solicitada",
+      "nome": "RUAN FERREIRA",
+      "telefone": "21993091661",
       "criadaEm": "2026-10-28T01:41:08.254Z",
       "expiraEm": "2026-10-28T01:51:08.254Z",
-      "solicitadaEm": null
+      "solicitadaEm": "2026-10-28T01:41:53.198Z"
     },
     "r_mqllu4urr7": {
       "id": "r_mqllu4urr7",
@@ -120,7 +120,7 @@
       "reserva": null
     },
     "21": {
-      "status": "reservado",
+      "status": "pendente",
       "reserva": "r_26zcwxa4cq"
     },
     "22": {
@@ -458,6 +458,17 @@
       "numeros": [
         "100"
       ]
+    },
+    {
+      "em": "2026-10-28T01:41:53.198Z",
+      "acao": "solicitado",
+      "por": "comprador",
+      "reserva": "r_26zcwxa4cq",
+      "numeros": [
+        "21"
+      ],
+      "nome": "RUAN FERREIRA",
+      "telefone": "21993091661"
     }
   ]
 }
