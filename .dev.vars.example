@@ -1,5 +1,7 @@
 # Usado por `npm run preview` (wrangler). Copie para .dev.vars.
 NEXTJS_ENV=development
+# Branch de dados usado no preview local (o deploy usa dados-producao, do wrangler.jsonc)
+GITHUB_BRANCH=dados-teste
 GITHUB_TOKEN=
 ADMIN_PASSWORD=
 ADMIN_SESSION_SECRET=

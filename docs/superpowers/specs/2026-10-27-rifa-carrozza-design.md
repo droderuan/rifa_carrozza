@@ -167,3 +167,12 @@ Substitui o fluxo "selecionar → botão Reservar" do spec §8.1.
 - Barra fixa inferior mostra quantidade, total, a contagem regressiva e o botão **Confirmar**, que leva ao formulário (nome + telefone), exibido abaixo da grade.
 - **Atualização da grade:** a cada **5 s** com a aba visível, e ao voltar o foco. Cache de `GET /api/rifa` por instância reduzido para **4 s** (protege o limite de ~5.000 leituras/h do token).
 - **Custo:** cada toque é um commit. O limite secundário do GitHub (~80 escritas/min) passa a valer por toque, não por compra; com muita gente tocando ao mesmo tempo, algumas ações podem demorar (retentativas) ou falhar com `CONFLITO_PERSISTENTE`.
+
+## 11. Mudança: branches só de dados (pedido do usuário, 2026-10-27)
+
+Substitui o §4.2 ("rifa.json no `main`").
+
+- Os dados ficam em branches **órfãos** do mesmo repositório, só com o `rifa.json`: **`dados-producao`** (site publicado, `wrangler.jsonc`) e **`dados-teste`** (testes locais, `.env.local` / `.dev.vars`). Nomes: escolha do assistente.
+- `GITHUB_BRANCH` passa a ser **obrigatório** (sem padrão `main`): se faltar, leitura e escrita falham com erro, em vez de gravar no branch do código.
+- `npm run seed` cria o branch órfão pela Git Data API (tree → commit sem pais → ref) quando ele não existe; se o branch existir sem o arquivo, cria o arquivo; se o arquivo existir, não faz nada.
+- Consequência: o app nunca commita no `main`, então não há mais a regra de `git pull` antes de push do código.

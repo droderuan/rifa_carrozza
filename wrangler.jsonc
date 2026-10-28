@@ -23,7 +23,7 @@
 	"vars": {
 		"GITHUB_OWNER": "droderuan",
 		"GITHUB_REPO": "rifa_carrozza",
-		"GITHUB_BRANCH": "main",
+		"GITHUB_BRANCH": "dados-producao",
 		"GITHUB_DB_PATH": "rifa.json"
 	}
 }
