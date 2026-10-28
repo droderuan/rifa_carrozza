@@ -3,10 +3,12 @@ type Props = { minutosReserva: number };
 export function ComoFunciona({ minutosReserva }: Props) {
   const passos = [
     <>
-      Escolha seus números na grade abaixo e toque em <strong className="text-foreground">Reservar</strong>.
+      Toque nos números que quiser na grade abaixo: eles ficam <strong className="text-foreground">reservados para
+      você na hora</strong>. Toque de novo para soltar.
     </>,
     <>
-      Você tem {minutosReserva} minutos para informar seu nome e o telefone que usa no grupo do WhatsApp.
+      A partir do primeiro número, você tem {minutosReserva} minutos para informar seu nome e o telefone que usa no
+      grupo do WhatsApp.
     </>,
     <>Faça o PIX e mande o comprovante no grupo. O organizador confirma seus números.</>,
   ];

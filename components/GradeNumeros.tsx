@@ -22,6 +22,8 @@ const ROTULOS: Record<StatusNumero, string> = {
 type Props = {
   numeros: NumeroPublico[];
   selecionados?: Set<string>;
+  /** Números com uma ação em andamento (pulsam). */
+  carregando?: Set<string>;
   /** Quais números aceitam clique. Padrão: nenhum. */
   clicavel?: (n: NumeroPublico) => boolean;
   onClicar?: (numero: string) => void;
@@ -29,7 +31,7 @@ type Props = {
   envolver?: (n: NumeroPublico, botao: ReactNode) => ReactNode;
 };
 
-export function GradeNumeros({ numeros, selecionados, clicavel, onClicar, envolver }: Props) {
+export function GradeNumeros({ numeros, selecionados, carregando, clicavel, onClicar, envolver }: Props) {
   return (
     <div className="grid grid-cols-10 gap-1 sm:gap-1.5">
       {numeros.map((n) => {
@@ -47,6 +49,7 @@ export function GradeNumeros({ numeros, selecionados, clicavel, onClicar, envolv
               CLASSES[selecionado ? "selecionado" : n.status],
               ativo ? "cursor-pointer hover:border-primary" : "cursor-default",
               ativo && !selecionado && "active:scale-95",
+              carregando?.has(n.numero) && "animate-pulse",
             )}
           >
             {formatarNumero(n.numero)}
@@ -61,7 +64,7 @@ export function GradeNumeros({ numeros, selecionados, clicavel, onClicar, envolv
 export function LegendaGrade({ comSelecionado = false }: { comSelecionado?: boolean }) {
   const itens: [keyof typeof CLASSES, string][] = [
     ["livre", "Livre"],
-    ...(comSelecionado ? [["selecionado", "Selecionado"] as [keyof typeof CLASSES, string]] : []),
+    ...(comSelecionado ? [["selecionado", "Seus números"] as [keyof typeof CLASSES, string]] : []),
     ["reservado", "Reservado"],
     ["pendente", "Pendente"],
     ["confirmado", "Vendido"],

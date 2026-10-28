@@ -1,8 +1,10 @@
 import { describe, expect, it } from "vitest";
 import {
+  adicionarNumeros,
   cancelarReserva,
   confirmarReserva,
   gerarIdReserva,
+  liberarNumeros,
   numerosDaReserva,
   reservaComNumeros,
   reservar,
@@ -236,5 +238,84 @@ describe("reservaComNumeros", () => {
         { numero: "12", status: "reservado" },
       ],
     });
+  });
+});
+
+describe("adicionarNumeros", () => {
+  it("adiciona à reserva aberta sem mudar o prazo e registra reservado", () => {
+    const e = estadoNovo();
+    reservar(e, T0, ID, ["7"]);
+    const expira = e.reservas[ID].expiraEm;
+    adicionarNumeros(e, depois(T0, MIN), ID, ["12", "3"]);
+    expect(numerosDaReserva(e, ID)).toEqual(["3", "7", "12"]);
+    expect(e.numeros["12"]).toEqual({ status: "reservado", reserva: ID });
+    expect(e.reservas[ID].expiraEm).toBe(expira);
+    expect(e.eventos.at(-1)).toEqual({
+      em: depois(T0, MIN).toISOString(),
+      acao: "reservado",
+      por: "comprador",
+      reserva: ID,
+      numeros: ["3", "12"],
+    });
+  });
+
+  it("falha por inteiro se algum número estiver ocupado", () => {
+    const e = estadoNovo();
+    reservar(e, T0, ID, ["7"]);
+    reservar(e, T0, "r_bbbbbbbbbb", ["12"]);
+    const err = erroDe(() => adicionarNumeros(e, T0, ID, ["8", "12"]));
+    expect(err.codigo).toBe("NUMEROS_INDISPONIVEIS");
+    expect(err.numeros).toEqual(["12"]);
+    expect(e.numeros["8"].status).toBe("livre");
+  });
+
+  it("respeita maxPorReserva somando os que já estão na reserva", () => {
+    const e = estadoNovo({ maxPorReserva: 2 });
+    reservar(e, T0, ID, ["1", "2"]);
+    expect(erroDe(() => adicionarNumeros(e, T0, ID, ["3"])).codigo).toBe("LIMITE_EXCEDIDO");
+  });
+
+  it("rejeita reserva expirada, não aberta e entrada inválida", () => {
+    const e = estadoNovo();
+    reservar(e, T0, ID, ["7"]);
+    const tarde = depois(T0, 10 * MIN + 31_000);
+    expect(erroDe(() => adicionarNumeros(e, tarde, ID, ["8"])).codigo).toBe("RESERVA_EXPIRADA");
+    aplicarExpiracoes(e, tarde);
+    expect(erroDe(() => adicionarNumeros(e, tarde, ID, ["8"])).codigo).toBe("RESERVA_EXPIRADA");
+    const s = estadoNovo();
+    reservar(s, T0, ID, ["7"]);
+    confirmarReserva(s, T0, ID, { nome: "Ana", telefone: "21999998888" });
+    expect(erroDe(() => adicionarNumeros(s, T0, ID, ["8"])).codigo).toBe("RESERVA_NAO_ABERTA");
+    const v = estadoNovo();
+    reservar(v, T0, ID, ["7"]);
+    expect(erroDe(() => adicionarNumeros(v, T0, ID, ["7"])).codigo).toBe("NUMEROS_INDISPONIVEIS");
+    expect(erroDe(() => adicionarNumeros(v, T0, ID, [])).codigo).toBe("DADOS_INVALIDOS");
+  });
+});
+
+describe("liberarNumeros", () => {
+  it("libera números da reserva aberta e registra cancelado", () => {
+    const e = estadoNovo();
+    reservar(e, T0, ID, ["7", "12"]);
+    liberarNumeros(e, depois(T0, MIN), ID, ["12"]);
+    expect(e.numeros["12"]).toEqual({ status: "livre", reserva: null });
+    expect(e.reservas[ID].status).toBe("aberta");
+    expect(e.eventos.at(-1)).toMatchObject({ acao: "cancelado", por: "comprador", numeros: ["12"] });
+  });
+
+  it("cancela a reserva quando o último número sai", () => {
+    const e = estadoNovo();
+    reservar(e, T0, ID, ["7"]);
+    liberarNumeros(e, T0, ID, ["7"]);
+    expect(e.reservas[ID].status).toBe("cancelada");
+    expect(e.numeros["7"].status).toBe("livre");
+  });
+
+  it("rejeita número que não é da reserva e reserva não aberta", () => {
+    const e = estadoNovo();
+    reservar(e, T0, ID, ["7"]);
+    expect(erroDe(() => liberarNumeros(e, T0, ID, ["8"])).codigo).toBe("DADOS_INVALIDOS");
+    confirmarReserva(e, T0, ID, { nome: "Ana", telefone: "21999998888" });
+    expect(erroDe(() => liberarNumeros(e, T0, ID, ["7"])).codigo).toBe("RESERVA_NAO_ABERTA");
   });
 });

@@ -156,3 +156,14 @@ Conforme `spec.md` 8.3, com o mesmo tema escuro e componentes shadcn (`Card`, `T
 - Layout exato do painel admin e do formulário de reserva (sheet vs. card), respeitando o spec e o tema.
 - Estrutura interna dos componentes além das listadas no spec 11.
 - Detalhes de microcopy fora dos textos já definidos no spec e aqui.
+
+## 10. Mudança: reserva ao tocar no número (pedido do usuário, 2026-10-27)
+
+Substitui o fluxo "selecionar → botão Reservar" do spec §8.1.
+
+- **Tocar num número livre** já reserva: o primeiro toque cria a reserva (`POST /api/reservas`) e inicia a contagem de `minutosReserva`; os seguintes entram na mesma reserva (`POST /api/reservas/[id]/numeros`, evento `reservado`). **O prazo não reinicia** ao adicionar números (escolha do assistente — evita segurar números indefinidamente).
+- **Tocar de novo num número seu** o libera (`POST /api/reservas/[id]/liberar`, evento `cancelado` só com esse número). Sem números, a reserva vira `cancelada`.
+- Os toques de um mesmo navegador vão para o servidor em fila, um por vez; o número pulsa enquanto a ação está em andamento.
+- Barra fixa inferior mostra quantidade, total, a contagem regressiva e o botão **Confirmar**, que leva ao formulário (nome + telefone), exibido abaixo da grade.
+- **Atualização da grade:** a cada **5 s** com a aba visível, e ao voltar o foco. Cache de `GET /api/rifa` por instância reduzido para **4 s** (protege o limite de ~5.000 leituras/h do token).
+- **Custo:** cada toque é um commit. O limite secundário do GitHub (~80 escritas/min) passa a valer por toque, não por compra; com muita gente tocando ao mesmo tempo, algumas ações podem demorar (retentativas) ou falhar com `CONFLITO_PERSISTENTE`.

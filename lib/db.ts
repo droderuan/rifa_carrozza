@@ -3,7 +3,7 @@ import { aplicarExpiracoes } from "@/lib/dominio/expiracao";
 import type { Estado, Evento } from "@/lib/dominio/tipos";
 import { ErroDominio } from "@/lib/erros";
 
-const TTL_CACHE_MS = 5_000;
+const TTL_CACHE_MS = 4_000;
 const TENTATIVAS = 5;
 
 let cache: { estado: Estado; em: number } | null = null;

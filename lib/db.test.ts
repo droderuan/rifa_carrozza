@@ -112,13 +112,16 @@ describe("expiração na leitura e na escrita (critério 6)", () => {
 });
 
 describe("lerEstado e cache", () => {
-  it("cache de 5 s, invalidação e leitura fresca", async () => {
+  it("cache de 4 s, invalidação e leitura fresca", async () => {
     vi.useFakeTimers({ toFake: ["Date"] });
     const ler = vi.spyOn(mem, "ler");
     await lerEstado();
     await lerEstado();
     expect(ler).toHaveBeenCalledTimes(1);
-    vi.setSystemTime(Date.now() + 5_001);
+    vi.setSystemTime(Date.now() + 3_999);
+    await lerEstado();
+    expect(ler).toHaveBeenCalledTimes(1);
+    vi.setSystemTime(Date.now() + 2);
     await lerEstado();
     expect(ler).toHaveBeenCalledTimes(2);
     invalidarCache();

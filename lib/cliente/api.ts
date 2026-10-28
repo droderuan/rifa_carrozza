@@ -43,6 +43,20 @@ export const obterReserva = (id: string) =>
     `/api/reservas/${encodeURIComponent(id)}`,
   );
 
+type RespostaReserva = { id: string; status: StatusReserva; numeros: string[]; segundosRestantes: number };
+
+export const adicionarNumeros = (id: string, numeros: string[]) =>
+  chamar<RespostaReserva>(`/api/reservas/${encodeURIComponent(id)}/numeros`, {
+    method: "POST",
+    body: JSON.stringify({ numeros }),
+  });
+
+export const liberarNumeros = (id: string, numeros: string[]) =>
+  chamar<RespostaReserva>(`/api/reservas/${encodeURIComponent(id)}/liberar`, {
+    method: "POST",
+    body: JSON.stringify({ numeros }),
+  });
+
 export const confirmar = (id: string, dados: { nome: string; telefone: string }) =>
   chamar<{ id: string; status: StatusReserva; numeros: string[] }>(
     `/api/reservas/${encodeURIComponent(id)}/confirmar`,
