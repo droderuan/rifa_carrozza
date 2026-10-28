@@ -1,3 +1,4 @@
+import { exigirPaginaAdmin } from "@/lib/auth";
 import { CardPendente } from "@/components/admin/CardPendente";
 import { GradeAdmin } from "@/components/admin/GradeAdmin";
 import { HistoricoGeral } from "@/components/admin/HistoricoGeral";
@@ -8,6 +9,7 @@ import { numerosDaReserva } from "@/lib/dominio/reservas";
 import { minutosDesde } from "@/lib/formatar";
 
 export default async function PainelAdmin() {
+  await exigirPaginaAdmin();
   const estado = await lerEstado({ fresco: true });
   const agora = new Date();
 

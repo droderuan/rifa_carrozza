@@ -5,6 +5,7 @@ import { FormPerfil } from "@/components/admin/FormPerfil";
 import { ListaEventos } from "@/components/admin/ListaEventos";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { exigirPaginaAdmin } from "@/lib/auth";
 import { lerEstado } from "@/lib/db";
 import { eventosDaReserva } from "@/lib/dominio/historico";
 import { reservaComNumeros } from "@/lib/dominio/reservas";
@@ -28,6 +29,7 @@ const ROTULO_RESERVA: Record<StatusReserva, string> = {
 
 export default async function DetalheReserva({ params }: PageProps<"/admin/reservas/[id]">) {
   const { id } = await params;
+  await exigirPaginaAdmin();
   const estado = await lerEstado({ fresco: true });
   if (!estado.reservas[id]) notFound();
   const { reserva, numeros } = reservaComNumeros(estado, id);

@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import { ErroDominio } from "@/lib/erros";
 
 export const COOKIE_SESSAO = "admin_session";
@@ -77,4 +78,9 @@ export async function estaLogado(): Promise<boolean> {
 
 export async function exigirAdmin(): Promise<void> {
   if (!(await estaLogado())) throw new ErroDominio("NAO_AUTORIZADO", 401, "Faça login no painel.");
+}
+
+/** Guard das páginas do admin: o do layout pode ser pulado por renderização parcial, então cada página chama este. */
+export async function exigirPaginaAdmin(): Promise<void> {
+  if (!(await estaLogado())) redirect("/admin/login");
 }

@@ -24,7 +24,7 @@ describe("codificar/decodificar", () => {
 describe("lerArquivo", () => {
   it("envia auth, user-agent e ref, e decodifica", async () => {
     const e = estadoNovo();
-    const fetchMock = vi.fn(async () => Response.json({ content: codificar(e), sha: "abc" }));
+    const fetchMock = vi.fn(async () => Response.json({ content: codificar(e), encoding: "base64", sha: "abc" }));
     vi.stubGlobal("fetch", fetchMock);
     const r = await lerArquivo();
     expect(r.sha).toBe("abc");
@@ -34,6 +34,20 @@ describe("lerArquivo", () => {
     const h = init.headers as Record<string, string>;
     expect(h.Authorization).toBe("Bearer tok");
     expect(h["User-Agent"]).toBe("rifa-carrozza");
+  });
+
+  it("arquivo acima de 1 MB (encoding none) é lido pelo formato raw", async () => {
+    const e = estadoNovo();
+    e.config.titulo = "Grande 🎸";
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValueOnce(Response.json({ content: "", encoding: "none", sha: "big" }))
+      .mockResolvedValueOnce(new Response(JSON.stringify(e)));
+    vi.stubGlobal("fetch", fetchMock);
+    const r = await lerArquivo();
+    expect(r).toMatchObject({ sha: "big", estado: { config: { titulo: "Grande 🎸" } } });
+    const init = fetchMock.mock.calls[1][1] as RequestInit;
+    expect((init.headers as Record<string, string>).Accept).toBe("application/vnd.github.raw+json");
   });
 
   it("404 vira RIFA_NAO_INICIALIZADA", async () => {

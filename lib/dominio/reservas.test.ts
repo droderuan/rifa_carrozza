@@ -139,11 +139,25 @@ describe("confirmarReserva", () => {
     );
   });
 
+  it("repetir a mesma confirmação é idempotente (resposta perdida)", () => {
+    const e = estadoNovo();
+    reservar(e, T0, ID, ["7"]);
+    expect(confirmarReserva(e, T0, ID, { nome: "Ana Lima", telefone: "21999998888" })).toBe(true);
+    const eventos = e.eventos.length;
+    expect(confirmarReserva(e, depois(T0, 20 * MIN), ID, { nome: " Ana  Lima", telefone: "(21) 99999-8888" })).toBe(
+      false,
+    );
+    expect(e.eventos).toHaveLength(eventos);
+    expect(erroDe(() => confirmarReserva(e, T0, ID, { nome: "Outra Pessoa", telefone: "21999998888" })).codigo).toBe(
+      "RESERVA_NAO_ABERTA",
+    );
+  });
+
   it("rejeita reserva não aberta e inexistente", () => {
     const e = estadoNovo();
     reservar(e, T0, ID, ["7"]);
     confirmarReserva(e, T0, ID, { nome: "Ana", telefone: "21999998888" });
-    expect(erroDe(() => confirmarReserva(e, T0, ID, { nome: "Ana", telefone: "21999998888" })).codigo).toBe(
+    expect(erroDe(() => confirmarReserva(e, T0, ID, { nome: "Bia", telefone: "21999998888" })).codigo).toBe(
       "RESERVA_NAO_ABERTA",
     );
     const nf = erroDe(() => confirmarReserva(e, T0, "r_zzzzzzzzzz", { nome: "Ana", telefone: "21999998888" }));

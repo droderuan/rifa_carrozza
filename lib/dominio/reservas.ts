@@ -86,10 +86,14 @@ export function confirmarReserva(
   agora: Date,
   id: string,
   dados: { nome: unknown; telefone: unknown },
-): void {
+): boolean {
   const r = obterReserva(estado, id);
   // Na escrita, aplicarExpiracoes já roda antes e marca a reserva como "expirada".
   if (r.status === "expirada") throw new ErroDominio("RESERVA_EXPIRADA", 410, "O prazo da reserva acabou.");
+  if (r.status === "solicitada") {
+    // Repetição da mesma confirmação (ex.: a resposta anterior se perdeu): sucesso sem gravar.
+    if (r.nome === normalizarNome(dados.nome) && r.telefone === normalizarTelefone(dados.telefone)) return false;
+  }
   exigirAberta(r);
   if (agora.getTime() > new Date(r.expiraEm).getTime() + TOLERANCIA_MS) {
     throw new ErroDominio("RESERVA_EXPIRADA", 410, "O prazo da reserva acabou.");
@@ -114,6 +118,7 @@ export function confirmarReserva(
     nome,
     telefone,
   });
+  return true;
 }
 
 export function cancelarReserva(estado: Estado, agora: Date, id: string): void {

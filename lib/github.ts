@@ -45,7 +45,14 @@ export async function lerArquivo(): Promise<{ estado: Estado; sha: string }> {
   }
   if (!res.ok) throw new Error(`GitHub GET ${res.status}: ${await res.text()}`);
   const json = await res.json();
-  return { estado: decodificar(json.content), sha: json.sha };
+  if (json.encoding === "base64") return { estado: decodificar(json.content), sha: json.sha };
+  // Acima de 1 MB a Contents API não traz o conteúdo; lê o blob desse mesmo sha em formato raw.
+  const blob = await fetch(
+    `${API}/repos/${process.env.GITHUB_OWNER}/${process.env.GITHUB_REPO}/git/blobs/${json.sha}`,
+    { headers: { ...headers(), Accept: "application/vnd.github.raw+json" }, cache: "no-store" },
+  );
+  if (!blob.ok) throw new Error(`GitHub GET blob ${blob.status}: ${await blob.text()}`);
+  return { estado: JSON.parse(await blob.text()), sha: json.sha };
 }
 
 export async function gravarArquivo(
