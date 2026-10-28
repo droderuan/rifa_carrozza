@@ -39,7 +39,7 @@
     },
     "r_iz6vpabf2l": {
       "id": "r_iz6vpabf2l",
-      "status": "aberta",
+      "status": "expirada",
       "nome": null,
       "telefone": null,
       "criadaEm": "2026-10-28T01:43:34.306Z",
@@ -53,6 +53,15 @@
       "telefone": null,
       "criadaEm": "2026-10-28T01:44:53.286Z",
       "expiraEm": "2026-10-28T01:54:53.286Z",
+      "solicitadaEm": null
+    },
+    "r_wyvuvr9l0f": {
+      "id": "r_wyvuvr9l0f",
+      "status": "aberta",
+      "nome": null,
+      "telefone": null,
+      "criadaEm": "2026-10-28T11:14:37.133Z",
+      "expiraEm": "2026-10-28T11:24:37.133Z",
       "solicitadaEm": null
     }
   },
@@ -182,8 +191,8 @@
       "reserva": null
     },
     "32": {
-      "status": "reservado",
-      "reserva": "r_iz6vpabf2l"
+      "status": "livre",
+      "reserva": null
     },
     "33": {
       "status": "livre",
@@ -270,8 +279,8 @@
       "reserva": null
     },
     "54": {
-      "status": "livre",
-      "reserva": null
+      "status": "reservado",
+      "reserva": "r_wyvuvr9l0f"
     },
     "55": {
       "status": "livre",
@@ -533,6 +542,24 @@
       "reserva": "r_er4l2d5pz3",
       "numeros": [
         "11"
+      ]
+    },
+    {
+      "em": "2026-10-28T01:53:34.306Z",
+      "acao": "expirado",
+      "por": "sistema",
+      "reserva": "r_iz6vpabf2l",
+      "numeros": [
+        "32"
+      ]
+    },
+    {
+      "em": "2026-10-28T11:14:37.133Z",
+      "acao": "reservado",
+      "por": "comprador",
+      "reserva": "r_wyvuvr9l0f",
+      "numeros": [
+        "54"
       ]
     }
   ]
